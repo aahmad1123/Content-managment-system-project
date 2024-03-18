@@ -1,0 +1,15 @@
+{
+  "name": "content-managment-system-project",
+  "version": "1.0.0",
+  "description": "building a command-line application from scratch to manage a company's employee database, using Node.js, Inquirer, and PostgreSQL.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^8.2.4"
+  }
+}
