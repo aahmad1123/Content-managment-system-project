@@ -2,6 +2,11 @@ const inquirer = require ("inquirer");
 const pool = require("./server");
 const cTable = require("console.table");
 
+
+//the functions that include error catches I worked on either with my tutor or during office hours with my instructor
+//while the remainder I worked on by myself and unfortunately forgot to include error catches and was scared of breaking the callback strings by trying to
+//add them back in
+
 const questions = [
     {
         type: "list",
@@ -61,13 +66,6 @@ function viewRoles(){
     })
 }
 
-// function viewEmployees(){
-//     pool.query("SELECT Employee.first_name, Employee.last_name, Role.title, Role.salary, Department.name AS department, Employee.manager_id AS manager FROM Employee JOIN Role on Employee.role_id = Role.id Join Department on Role.department_id = Department.id", (err, res) => {
-//         if (err) throw err;
-//          console.table(res.rows);
-//         promptQuestions();
-//     })
-// }
 
 function viewEmployees(){
     pool.query("SELECT e.first_name AS employee_first_name, e.last_name AS employee_last_name, " +
@@ -199,7 +197,7 @@ function addEmployee(){
         })
 } 
  
-//write update function
+
 function updateEmployeeRole(){
     pool.query("SELECT CONCAT(first_name, ' ', last_name) AS name, id FROM Employee", (err, res) => {
         if (err) {
@@ -235,7 +233,6 @@ function updateEmployeeRole(){
                     const selectedRole = res.rows.find(role => role.title === data.updateRole);
                     const selectedRoleId = selectedRole.id;
                     
-                    // Update the employee's role
                     pool.query("UPDATE Employee SET role_id = $1 WHERE id = $2", [selectedRoleId, selectedPersonId], (err, res) => {
                         if (err) {
                             console.error(err);
